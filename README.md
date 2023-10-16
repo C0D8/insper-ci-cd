@@ -1,4 +1,3 @@
 # insper-ci-cd
-![JaCoCo Coverage](github/badges/badge.svg)
-
+![Coverage](.github/badges/jacoco.svg)
 
