@@ -31,22 +31,26 @@ public class GameServiceTests {
 
     @Test
     void test_saveGame() {
+
+        Team fla = new Team();
+        Team vas = new Team();
+        fla.setIdentifier("Fla");
+        vas.setIdentifier("Vas");
+
         SaveGameDTO saveGameDTO = new SaveGameDTO();
-        saveGameDTO.setHome("home");
-        saveGameDTO.setAway("away");
+        saveGameDTO.setHome(fla.getIdentifier());
+        saveGameDTO.setAway(vas.getIdentifier());
 
-        // Simule o comportamento do TeamService
-        Mockito.when(teamService.getTeam("home")).thenReturn(new Team());
-        Mockito.when(teamService.getTeam("away")).thenReturn(new Team());
 
-        // Simule o comportamento do GameRepository
-        Mockito.when(gameRepository.save(Mockito.any())).thenAnswer(invocation -> invocation.getArgument(0));
+        Mockito.when(teamService.getTeam(saveGameDTO.getHome())).thenReturn(fla);
+        Mockito.when(teamService.getTeam(saveGameDTO.getHome())).thenReturn(vas);
+
 
         GameReturnDTO resp = gameService.saveGame(saveGameDTO);
 
-        Assertions.assertNotNull(resp);
-        Assertions.assertEquals("home", resp.getHome());
-        Assertions.assertEquals("away", resp.getAway());
+
+        Assertions.assertEquals(fla.getIdentifier(), resp.getHome());
+        Assertions.assertEquals(vas.getIdentifier(), resp.getAway());
     }
 
 
