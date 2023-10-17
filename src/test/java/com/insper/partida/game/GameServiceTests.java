@@ -43,7 +43,7 @@ public class GameServiceTests {
 
 
         Mockito.when(teamService.getTeam(saveGameDTO.getHome())).thenReturn(fla);
-        Mockito.when(teamService.getTeam(saveGameDTO.getHome())).thenReturn(vas);
+        Mockito.when(teamService.getTeam(saveGameDTO.getAway())).thenReturn(vas);
 
 
         GameReturnDTO resp = gameService.saveGame(saveGameDTO);
